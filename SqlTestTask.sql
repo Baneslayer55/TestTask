@@ -1,5 +1,4 @@
-CREATE TABLE Products 
-(
+CREATE TABLE Products (
 	Id INT PRIMARY KEY,
 	"Product name" TEXT
 );
@@ -7,41 +6,40 @@ CREATE TABLE Products
 INSERT INTO Products
 VALUES
 	(1, 'How to become a programmer in 2 weeks.'),
-	(2, 'Sabaton - Discography'),
-	(3, 'Club dance unltra mega mix music. Edition 132'),
-	(4, 'A Midsummer Nights Dream'),
-	(5, 'Tide');
+	(2, 'Martian'),
+	(3, 'History textbook'),
+	(4, 'Handbook of Educational Psychology'),
+	(5, 'Book without category');
 
-CREATE TABLE Shops 
-(
+CREATE TABLE Categories (
 	Id INT PRIMARY KEY,
-	"Shop name" TEXT
+	"Category name" TEXT
 );
 
-INSERT INTO Shops
+INSERT INTO Categories
 VALUES
-	(1, 'All books inside!'),
-	(2, 'Cool music'),
-	(3, 'Fix Price');
+	(1, 'Sci-Fi'),
+	(2, 'History'),
+	(3, 'Education');
 
-CREATE TABLE ProductsShops 
-(
+CREATE TABLE ProductsShops (
 	ProductsId INT FOREIGN KEY REFERENCES Products(Id),
-	ShopsId INT FOREIGN KEY REFERENCES Shops(Id),
-	PRIMARY KEY (ProductsId, ShopsId)
+	CategoriesId INT FOREIGN KEY REFERENCES Categories(Id),
+	PRIMARY KEY (ProductsId, CategoriesId)
 );
 
 INSERT INTO ProductsShops
 VALUES
-	(2, 2),
-        (3, 2),
+	(1, 1),
+    (2, 1),
+	(3, 2),
 	(3, 3),
-	(4, 1),
-	(5, 3);
+	(4, 3);
+
 	
-SELECT P."Product name", S."Shop name"
+SELECT P."Product name", C."Category Name"
 FROM Products P
 LEFT JOIN ProductsShops PS
 	ON P.Id = PS.ProductsId
-LEFT JOIN Shops S
-	ON PS.ShopsId = S.Id;
+LEFT JOIN Categories C
+	ON PS.CategoriesId = C.Id;
