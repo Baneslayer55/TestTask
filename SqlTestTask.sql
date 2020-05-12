@@ -1,4 +1,5 @@
-CREATE TABLE Products (
+CREATE TABLE Products 
+(
 	Id INT PRIMARY KEY,
 	"Product name" TEXT
 );
@@ -11,7 +12,8 @@ VALUES
 	(4, 'A Midsummer Nights Dream'),
 	(5, 'Tide');
 
-CREATE TABLE Shops (
+CREATE TABLE Shops 
+(
 	Id INT PRIMARY KEY,
 	"Shop name" TEXT
 );
@@ -22,7 +24,8 @@ VALUES
 	(2, 'Cool music'),
 	(3, 'Fix Price');
 
-CREATE TABLE ProductsShops (
+CREATE TABLE ProductsShops 
+(
 	ProductsId INT FOREIGN KEY REFERENCES Products(Id),
 	ShopsId INT FOREIGN KEY REFERENCES Shops(Id),
 	PRIMARY KEY (ProductsId, ShopsId)
@@ -31,7 +34,7 @@ CREATE TABLE ProductsShops (
 INSERT INTO ProductsShops
 VALUES
 	(2, 2),
-    (3, 2),
+        (3, 2),
 	(3, 3),
 	(4, 1),
 	(5, 3);
